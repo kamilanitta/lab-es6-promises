@@ -37,7 +37,18 @@ addFood(mashPotatoes[0], "#mashPotatoes").then(() => {
 
 // Iteration 3 using async/await
 
-async function makeFood(step) {
-  // ... your code here
+async function makeFood(steps, id) {
+  return new Promise(async (resolve, reject) => {
+    for (let step of steps) {
+      await addFood(step, id);
+    }
+
+    document.querySelector(
+      "#table"
+    ).innerHTML += `<img src="public/images/brusselSprouts.jpg" />`;
+
+    resolve();
+  });
 }
-makeFood(eachStep);
+
+const cookBrusselSprouts = makeFood(brusselSprouts, "#brusselSprouts");
